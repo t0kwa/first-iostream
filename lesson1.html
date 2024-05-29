@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyfirstIOstream</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+
+</head>
+<style>
+    #submit {
+        display: none;
+    }
+    #errorMessage {
+        display: none;
+        color: red;
+    }
+    .answer-box {
+        border: 2px dashed green;
+        width: 200px;
+        height: 100px;
+        margin: 20px;
+    }
+</style>
+</head>
+<body id="body3">
+<a href="homepage.html"><img src="WEB DEV.jpg" class="LOGO"></a>
+<img src="dino friend.jpg" class="dinofriend">
+
+<div class="whitebox">
+    <div class="bubble">
+        <h4 id="topic">Welcome to lesson 1! Data Dash</h4>
+    </div>
+    <div id="question">
+        <div id="charBox" class="answer-box">char answer box</div>
+        <div id="intBox" class="answer-box">int answer box</div>
+        <div id="charItems">
+            <div class="draggable" data-type="char">A</div>
+            <div class="draggable" data-type="char">B</div>
+            <div class="draggable" data-type="char">C</div>
+        </div>
+        <div id="intItems">
+            <div class="draggable" data-type="int">1</div>
+            <div class="draggable" data-type="int">2</div>
+            <div class="draggable" data-type="int">3</div>
+        </div>
+    </div>
+</div>
+
+<h3 id="congrats"><a href="congrats2.html" id="submit">Submit!</a></h3>
+<div id="errorMessage">Error: Please ensure all items are correctly sorted.</div>
+
+<script>
+    $(function() {
+        $(".draggable").draggable({
+            revert: "invalid"
+        });
+
+        $("#charBox").droppable({
+            accept: ".draggable[data-type='char']",
+            drop: function(event, ui) {
+                $(this).append(ui.draggable);
+                checkCompletion();
+            }
+        });
+
+        $("#intBox").droppable({
+            accept: ".draggable[data-type='int']",
+            drop: function(event, ui) {
+                $(this).append(ui.draggable);
+                checkCompletion();
+            }
+        });
+
+        function checkCompletion() {
+            const charBoxItems = $("#charBox .draggable").length;
+            const intBoxItems = $("#intBox .draggable").length;
+
+            if (charBoxItems === 3 && intBoxItems === 3) {
+                $("#submit").show();
+                $("#errorMessage").hide();
+            } else {
+                $("#submit").hide();
+            }
+        }
+    });
+</script>
+</body>
+</html>

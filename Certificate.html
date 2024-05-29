@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFirstIOstream</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <nav class="homebutton">
+        <a href="homepage.html"><img src="images/homebutton.png" class ="homebtn"></a>
+    </nav>
+    <form id="downloadForm" action="Certificate.pdf" method="get">
+        <img src="WEB DEV .jpg" class="LOGO">
+        <div class="wrapper3">         
+            <div class="certificatedeets">
+                <p2 id="certificateword">Certificate</p2>
+                <button type="submit" class="certificatepdf" target="_blank">Certificate.pdf</button>
+                 <button type="submit" class="download" target="_blank">Download</button>
+                <button type="button" class="cancel">Cancel</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const downloadButton = document.querySelector('.certificatepdf');
+            const cancelButton = document.querySelector('.cancel');
+
+            downloadButton.addEventListener('click', () => {
+                document.getElementById('downloadForm').submit(); // Submit the form to initiate download
+            });
+
+            cancelButton.addEventListener('click', () => {
+                window.location.href = 'homepage.html'; // Redirect to lesson page if cancel button is clicked
+            });
+        });
+    </script>
+</body>
